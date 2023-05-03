@@ -14,4 +14,20 @@ export class ProductService {
       product
     );
   }
+
+  public getAllProducts() {
+    return this.http.get<Product[]>("http://localhost:9090/getAllProducts");
+  }
+
+  public getProductDetailsById(productId) {
+    return this.http.get<Product>(
+      "http://localhost:9090/getProductDetailsById/" + productId
+    );
+  }
+
+  public deleteProduct(productId: number) {
+    return this.http.delete(
+      "http://localhost:9090/deleteProductDetails/" + productId
+    );
+  }
 }

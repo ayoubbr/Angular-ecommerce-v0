@@ -43,15 +43,47 @@
             <button mat-stroked-button color="primary" class="me-3">
               Clear
             </button>
-            <button mat-stroked-button color="primary" type="submit">
+            <button mat-stroked-button color="primary" type="submit" *ngIf="isNewProduct">
               Add product
+            </button>
+            <button mat-stroked-button color="primary" type="submit" *ngIf="!isNewProduct">
+              Update product
             </button>
           </div>
         </form>
       </div>
       <div class="col-6">
-        <input type="file" multiple value="select" #selectFile 
-        (change)="onFileSelected($event)">
+        <div>
+          <div class="dropzone" appDrag (files)="fileDropped($event)">
+
+            <div class="text-wrapper">
+              Drag and Drop your file or
+              <a (click)="selectFile.click()" class="browse-btn">browse</a> a file
+            </div>
+          </div>
+          <input
+            type="file"
+            multiple
+            value="select"
+            #selectFile
+            (change)="onFileSelected($event)"
+            style="display: none;"
+          />
+        </div>
+        <div class="mt-5">
+          <div class="row">
+            <mat-grid-list cols="4" rowHeight="1:1">
+              <mat-grid-tile
+                *ngFor="let file of product.productImages; let i = index"
+              >
+                <div style="position: relative">
+                  <span class="btn-remove-img" (click)="removeImage(i)">x</span>
+                  <img [src]="file.url" width="100px" height="100px" />
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+        </div>
       </div>
     </div>
   </div>
