@@ -14,11 +14,12 @@ import { Router } from "@angular/router";
   styleUrls: ["./show-product-details.component.css"]
 })
 export class ShowProductDetailsComponent implements OnInit {
-  productDetails: Product[] = [];
+  // productDetails: Product[] = [];
+  productDetails = [];
   displayedColumns: string[] = [
     "Id",
     "Product Name",
-    "Product Description",
+    "description",
     "Product Discounted Price",
     "Product Actual Price",
     "Images",

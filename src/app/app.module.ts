@@ -28,6 +28,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { ShowProductImagesDialogComponent } from "./show-product-images-dialog/show-product-images-dialog.component";
 import { MatDialogModule } from "@angular/material/dialog";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { MatDialogModule } from "@angular/material/dialog";
     MatGridListModule,
     MatTableModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    CommonModule
   ],
   providers: [
     AuthGuard,
