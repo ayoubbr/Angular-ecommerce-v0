@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../_services/product.service';
-import { Product } from '../_model/product.model';
-import { map } from 'rxjs/operators';
-import { ImageProcessingService } from '../image-processing.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { ProductService } from "../_services/product.service";
+import { Product } from "../_model/product.model";
+import { map } from "rxjs/operators";
+import { ImageProcessingService } from "../image-processing.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-  productDetails:Product[] = [];
+  productDetails: Product[] = [];
   // productDetails = [];
-  constructor(private productService:ProductService, 
-    private imageProcessingService:ImageProcessingService) { }
+  constructor(
+    private productService: ProductService,
+    private imageProcessingService: ImageProcessingService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -41,4 +45,8 @@ export class HomeComponent implements OnInit {
       );
   }
 
+  showProductDetails(productId) {
+    console.log(productId);
+    this.router.navigate(["/productViewDetails", { productId: productId }]);
+  }
 }
