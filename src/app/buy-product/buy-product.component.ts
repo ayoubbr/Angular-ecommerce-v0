@@ -12,6 +12,7 @@ import { ProductService } from "../_services/product.service";
 })
 export class BuyProductComponent implements OnInit {
   productDetails: Product[] = [];
+  // productDetails: Product[] = [];
 
   orderDetails: OrderDetails = {
     fullName: "",
@@ -48,5 +49,34 @@ export class BuyProductComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  getQuantityForProduct(productId) {
+    const filteredProduct = this.orderDetails.orderProductQuantityList.filter(
+      (productQunatity) => productQunatity.productId === productId
+    );
+    return filteredProduct[0].quantity;
+  }
+
+  getCalculatedTotal(productId, productDiscountedPrice) {
+    const quantity = this.getQuantityForProduct(productId);
+    return quantity * productDiscountedPrice;
+  }
+
+  onQuantityChanged(q, productId) {
+    this.orderDetails.orderProductQuantityList.filter(
+      (product) => product.productId === productId
+    )[0].quantity = q;
+  }
+
+  getCalculatedGrandTotal() {
+    let grandTotal = 0;
+    this.orderDetails.orderProductQuantityList.forEach((productQuantity) => {
+      const price = this.productDetails.filter(
+        (product) => product.productId === productQuantity.productId
+      )[0].productDiscountedPrice;
+      grandTotal += price * productQuantity.quantity;
+    });
+    return grandTotal;
   }
 }
