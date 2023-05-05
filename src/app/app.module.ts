@@ -31,6 +31,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { CommonModule } from "@angular/common";
 import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
 import { BuyProductComponent } from './buy-product/buy-product.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { BuyProductComponent } from './buy-product/buy-product.component';
     ShowProductDetailsComponent,
     ShowProductImagesDialogComponent,
     ProductViewDetailsComponent,
-    BuyProductComponent
+    BuyProductComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     BrowserModule,
