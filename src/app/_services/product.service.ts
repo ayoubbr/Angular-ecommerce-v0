@@ -16,8 +16,10 @@ export class ProductService {
     );
   }
 
-  public getAllProducts() {
-    return this.http.get<Product[]>("http://localhost:9090/getAllProducts");
+  public getAllProducts(pageNumber) {
+    return this.http.get<Product[]>(
+      "http://localhost:9090/getAllProducts?pageNumber=" + pageNumber
+    );
   }
 
   public getProductDetailsById(productId) {
