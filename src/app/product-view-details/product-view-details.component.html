@@ -7,7 +7,6 @@
           class="product-zoom-image"
         />
       </div>
-
       <mat-grid-list cols="4" gutterSize="10" rowHeight="3:4">
         <mat-grid-tile
           *ngFor="let file of product.productImages; let i = index"
@@ -37,7 +36,12 @@
           >
         </div>
         <div class="mt-5 text-center">
-          <button mat-raised-button color="warn" style="width: 200px">
+          <button
+            mat-raised-button
+            color="warn"
+            style="width: 200px"
+            (click)="buyProduct(product.productId)"
+          >
             Buy Now
           </button>
         </div>
