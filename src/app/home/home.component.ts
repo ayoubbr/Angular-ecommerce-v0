@@ -9,11 +9,10 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
   productDetails: Product[] = [];
-  // productDetails: Product[] = [];
   pageNumber: number = 0;
   showLoadButton = false;
   constructor(
@@ -26,9 +25,15 @@ export class HomeComponent implements OnInit {
     this.getAllProducts();
   }
 
-  public getAllProducts() {
+  searchByKeyword(searchKeyword) {
+    this.pageNumber = 0;
+    this.productDetails = [];
+    this.getAllProducts(searchKeyword);
+  }
+
+  getAllProducts(searchKey: string = "") {
     this.productService
-      .getAllProducts(this.pageNumber)
+      .getAllProducts(this.pageNumber, searchKey)
       .pipe(
         map((x: Product[], i) =>
           x.map((product: Product) =>
@@ -56,7 +61,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(["/productViewDetails", { productId: productId }]);
   }
 
-  public loadMoreProduct() {
+  loadMoreProduct() {
     this.pageNumber = this.pageNumber + 1;
     this.getAllProducts();
   }

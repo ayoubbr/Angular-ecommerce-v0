@@ -4,7 +4,7 @@ import { Product } from "../_model/product.model";
 import { OrderDetails } from "../_model/order-details.model";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ProductService {
   constructor(private http: HttpClient) {}
@@ -16,9 +16,12 @@ export class ProductService {
     );
   }
 
-  public getAllProducts(pageNumber) {
+  public getAllProducts(pageNumber, searchKeyword: string = "") {
     return this.http.get<Product[]>(
-      "http://localhost:9090/getAllProducts?pageNumber=" + pageNumber
+      "http://localhost:9090/getAllProducts?pageNumber=" +
+        pageNumber +
+        "&searchKey=" +
+        searchKeyword
     );
   }
 
