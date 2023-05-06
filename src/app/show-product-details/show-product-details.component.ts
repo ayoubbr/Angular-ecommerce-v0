@@ -11,11 +11,10 @@ import { Router } from "@angular/router";
 @Component({
   selector: "app-show-product-details",
   templateUrl: "./show-product-details.component.html",
-  styleUrls: ["./show-product-details.component.css"]
+  styleUrls: ["./show-product-details.component.css"],
 })
 export class ShowProductDetailsComponent implements OnInit {
   productDetails: Product[] = [];
-  // productDetails = [];
   displayedColumns: string[] = [
     "Id",
     "Product Name",
@@ -24,12 +23,12 @@ export class ShowProductDetailsComponent implements OnInit {
     "Product Actual Price",
     "Images",
     "Edit",
-    "Delete"
+    "Delete",
   ];
-
   pageNumber: number = 0;
   showTable = false;
   showLoadButton = false;
+
   constructor(
     private productService: ProductService,
     public imagesDialog: MatDialog,
@@ -41,10 +40,16 @@ export class ShowProductDetailsComponent implements OnInit {
     this.getAllProducts();
   }
 
-  public getAllProducts() {
+  searchByKeyword(searchKeyword) {
+    this.pageNumber = 0;
+    this.productDetails = [];
+    this.getAllProducts(searchKeyword);
+  }
+
+  getAllProducts(searchKeyword: string = "") {
     this.showTable = false;
     this.productService
-      .getAllProducts(this.pageNumber)
+      .getAllProducts(this.pageNumber, searchKeyword)
       .pipe(
         map((x: Product[], i) =>
           x.map((product: Product) =>
@@ -86,10 +91,10 @@ export class ShowProductDetailsComponent implements OnInit {
     console.log(product);
     this.imagesDialog.open(ShowProductImagesDialogComponent, {
       data: {
-        images: product.productImages
+        images: product.productImages,
       },
       minHeight: "200px",
-      minWidth: "700px"
+      minWidth: "700px",
     });
   }
 
@@ -98,7 +103,7 @@ export class ShowProductDetailsComponent implements OnInit {
     this.router.navigate(["/addNewProduct", { productId: productId }]);
   }
 
-  public loadMoreProduct() {
+  loadMoreProduct() {
     this.pageNumber = this.pageNumber + 1;
     this.getAllProducts();
   }
