@@ -12,7 +12,8 @@ export class CartComponent implements OnInit {
     "Name",
     "Description",
     "Price",
-    "Discounted Price"
+    "Discounted Price",
+    "Action"
   ];
   cartDetails: any[] = [];
   constructor(private productService: ProductService, private router: Router) {}
@@ -45,5 +46,17 @@ export class CartComponent implements OnInit {
     //     console.log(err);
     //   }
     // );
+  }
+
+  delete(cartId) {
+    console.log(cartId);
+    this.productService.deleteCartItem(cartId).subscribe(
+      (resp) => {
+        this.getCartDetails();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
