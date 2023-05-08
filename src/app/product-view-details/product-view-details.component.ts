@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../_model/product.model";
+import { ProductService } from "../_services/product.service";
 
 @Component({
   selector: "app-product-view-details",
@@ -10,7 +11,11 @@ import { Product } from "../_model/product.model";
 export class ProductViewDetailsComponent implements OnInit {
   product: Product;
   selectedProductIndex = 0;
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
     this.product = this.activatedRoute.snapshot.data["product"];
@@ -30,5 +35,16 @@ export class ProductViewDetailsComponent implements OnInit {
         id: productId
       }
     ]);
+  }
+
+  addToCart(productId) {
+    this.productService.addToCart(productId).subscribe(
+      (resp) => {
+        console.log(resp);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
