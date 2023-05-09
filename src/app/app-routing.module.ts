@@ -15,6 +15,7 @@ import { BuyProductResolverService } from "./buy-product-resolver.service";
 import { OrderConfirmationComponent } from "./order-confirmation/order-confirmation.component";
 import { RegisterComponent } from "./register/register.component";
 import { CartComponent } from "./cart/cart.component";
+import { MyOrdersComponent } from "./my-orders/my-orders.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -64,6 +65,12 @@ const routes: Routes = [
   {
     path: "orderConfirm",
     component: OrderConfirmationComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ["User"] }
+  },
+  {
+    path: "myOrders",
+    component: MyOrdersComponent,
     canActivate: [AuthGuard],
     data: { roles: ["User"] }
   },

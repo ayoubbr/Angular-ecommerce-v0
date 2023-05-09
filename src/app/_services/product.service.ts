@@ -1,7 +1,9 @@
+import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Product } from "../_model/product.model";
 import { OrderDetails } from "../_model/order-details.model";
+import { MyOrderDetails } from "../_model/order.model";
 
 @Injectable({
   providedIn: "root"
@@ -63,5 +65,11 @@ export class ProductService {
 
   public deleteCartItem(cartId: number) {
     return this.http.delete("http://localhost:9090/deleteCartItem/" + cartId);
+  }
+
+  public getOrderDetails(): Observable<MyOrderDetails[]> {
+    return this.http.get<MyOrderDetails[]>(
+      "http://localhost:9090/getOrderDetails"
+    );
   }
 }
