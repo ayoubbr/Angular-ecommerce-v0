@@ -8,6 +8,7 @@ import { ProductService } from "../_services/product.service";
 })
 export class OrderDetailsComponent implements OnInit {
   dataSource = [];
+  // dataSource = [];
   displayedColumns: string[] = [
     "index",
     "id",
@@ -16,8 +17,7 @@ export class OrderDetailsComponent implements OnInit {
     "address",
     "contactno",
     "status",
-    "edit",
-    "delete"
+    "action"
   ];
   pageNumber: number = 0;
   showTable = false;
@@ -33,6 +33,18 @@ export class OrderDetailsComponent implements OnInit {
       (resp) => {
         this.dataSource = resp;
         console.log(resp);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  markAsDelivered(orderId) {
+    this.productService.markAsDelivered(orderId).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.getAllOrderDetailsForAdmin();
       },
       (err) => {
         console.log(err);
