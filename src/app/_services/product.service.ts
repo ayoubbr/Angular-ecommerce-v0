@@ -73,9 +73,9 @@ export class ProductService {
     );
   }
 
-  public getAllOrderDetails(): Observable<MyOrderDetails[]> {
+  public getAllOrderDetails(status: string): Observable<MyOrderDetails[]> {
     return this.http.get<MyOrderDetails[]>(
-      "http://localhost:9090/getAllOrderDetails"
+      "http://localhost:9090/getAllOrderDetails/" + status
     );
   }
 

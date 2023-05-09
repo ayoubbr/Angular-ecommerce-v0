@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../_services/product.service";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: "app-order-details",
@@ -19,17 +20,20 @@ export class OrderDetailsComponent implements OnInit {
     "status",
     "action"
   ];
-  pageNumber: number = 0;
-  showTable = false;
-  showLoadButton = false;
+  // pageNumber: number = 0;
+  // showTable = false;
+  // showLoadButton = false;
+  status: string = "all";
+  fontStyleControl = new FormControl("");
+  fontStyle?: string;
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.getAllOrderDetailsForAdmin();
+    this.getAllOrderDetailsForAdmin(this.status);
   }
 
-  getAllOrderDetailsForAdmin() {
-    this.productService.getAllOrderDetails().subscribe(
+  getAllOrderDetailsForAdmin(status: string) {
+    this.productService.getAllOrderDetails(status).subscribe(
       (resp) => {
         this.dataSource = resp;
         console.log(resp);
@@ -44,7 +48,7 @@ export class OrderDetailsComponent implements OnInit {
     this.productService.markAsDelivered(orderId).subscribe(
       (resp) => {
         console.log(resp);
-        this.getAllOrderDetailsForAdmin();
+        this.getAllOrderDetailsForAdmin(this.status);
       },
       (err) => {
         console.log(err);

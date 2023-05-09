@@ -12,6 +12,25 @@
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field> -->
   <div>
+    <div class="mb-3 d-flex justify-content-end">
+      <mat-button-toggle-group aria-label="Font Style" >
+        <mat-button-toggle
+          value="all"
+          (click)="getAllOrderDetailsForAdmin('all')"
+          >All</mat-button-toggle
+        >
+        <mat-button-toggle
+          value="Placed"
+          (click)="getAllOrderDetailsForAdmin('Placed')"
+          >Placed</mat-button-toggle
+        >
+        <mat-button-toggle
+          value="Delivered"
+          (click)="getAllOrderDetailsForAdmin('Delivered')"
+          >Delivered</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+    </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
       <!-- Id Column -->
       <ng-container matColumnDef="index">
