@@ -1,22 +1,22 @@
-import { ProductViewDetailsComponent } from "./product-view-details/product-view-details.component";
+import { ProductViewDetailsComponent } from "./components/product-view-details/product-view-details.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AdminComponent } from "./admin/admin.component";
-import { ForbiddenComponent } from "./forbidden/forbidden.component";
+import { ForbiddenComponent } from "./components/forbidden/forbidden.component";
 import { HomeComponent } from "./home/home.component";
-import { LoginComponent } from "./login/login.component";
-import { UserComponent } from "./user/user.component";
-import { AuthGuard } from "./_auth/auth.guard";
-import { AddNewProductComponent } from "./add-new-product/add-new-product.component";
-import { ShowProductDetailsComponent } from "./show-product-details/show-product-details.component";
-import { ProductResolveService } from "./product-resolve.service";
-import { BuyProductComponent } from "./buy-product/buy-product.component";
-import { BuyProductResolverService } from "./buy-product-resolver.service";
-import { OrderConfirmationComponent } from "./order-confirmation/order-confirmation.component";
-import { RegisterComponent } from "./register/register.component";
-import { CartComponent } from "./cart/cart.component";
-import { MyOrdersComponent } from "./my-orders/my-orders.component";
-import { OrderDetailsComponent } from "./order-details/order-details.component";
+import { LoginComponent } from "./components/login/login.component";
+import { UserComponent } from "./components/user/user.component";
+import { AuthGuard } from "./auth/auth.guard";
+import { AddNewProductComponent } from "./admin/add-new-product/add-new-product.component";
+import { ShowProductDetailsComponent } from "./admin/show-product-details/show-product-details.component";
+import { ProductResolveService } from "./services/product-resolve.service";
+import { BuyProductComponent } from "./components/buy-product/buy-product.component";
+import { BuyProductResolverService } from "./services/buy-product-resolver.service";
+import { OrderConfirmationComponent } from "./components/order-confirmation/order-confirmation.component";
+import { RegisterComponent } from "./components/register/register.component";
+import { CartComponent } from "./components/cart/cart.component";
+import { MyOrdersComponent } from "./components/my-orders/my-orders.component";
+import { OrderDetailsComponent } from "./admin/order-details/order-details.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
