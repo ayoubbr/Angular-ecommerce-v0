@@ -7,6 +7,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { MatDialog } from "@angular/material/dialog";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-show-product-details",
@@ -64,12 +65,25 @@ export class ShowProductDetailsComponent implements OnInit {
   }
 
   deleteProduct(productId) {
-    this.productService.deleteProduct(productId).subscribe(
-      (resp) => {
-        this.getAllProducts();
-      },
-      (error) => {}
-    );
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.deleteProduct(productId).subscribe(
+          (resp) => {
+            this.getAllProducts();
+          },
+          (error) => {}
+        );
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
   }
 
   showImages(product: Product) {

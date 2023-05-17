@@ -20,6 +20,7 @@ export class ProductViewDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.product = this.activatedRoute.snapshot.data["product"];
   }
 

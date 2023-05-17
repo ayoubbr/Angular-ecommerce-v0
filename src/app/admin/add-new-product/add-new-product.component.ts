@@ -6,6 +6,7 @@ import { ProductService } from "../../services/product.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-add-new-product",
@@ -41,14 +42,34 @@ export class AddNewProductComponent implements OnInit {
     const productFormData = this.prepareFormData(this.product);
     this.productService.addProduct(productFormData).subscribe(
       (response: Product) => {
-        productForm.reset();
         if (!this.isNewProduct) {
           this.router.navigate(["/admin/showProductDetails"]);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product updated successfuly!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        } else {
+          productForm.reset();
+          this.product.productImages = [];
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product added successfuly!",
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
-        this.product.productImages = [];
       },
       (error: HttpErrorResponse) => {
         console.error(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!"
+        });
       }
     );
   }
