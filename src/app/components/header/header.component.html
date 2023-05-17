@@ -1,63 +1,35 @@
-<mat-toolbar color="primary">
-  <span routerLink="/"> Ecommerce Application </span>
-  <span class="space-buttons"></span>
-  <button
-    mat-raised-button
-    color="primary"
-    *ngIf="!isLoggedIn()"
-    routerLink="/login"
-  >
-    Login
-  </button>
-  <button
-    mat-raised-button
-    color="warn"
-    *ngIf="isLoggedIn()"
-    (click)="logout()"
-  >
-    Logout
-  </button>
-</mat-toolbar>
-
-<mat-toolbar color="primary" *ngIf="isLoggedIn()">
-  <button mat-raised-button color="primary" routerLink="/">Home</button>
-  <button *ngIf="isUser()" mat-raised-button routerLink="/cart" class="ms-2">
-    Cart
-  </button>
-  <button
-    *ngIf="isUser()"
-    mat-raised-button
-    color="warn"
-    routerLink="/myOrders"
-    class="ms-2"
-  >
-    My Orders
-  </button>
-  <button
-    *ngIf="isAdmin()"
-    mat-raised-button
-    color="primary"
-    routerLink="/addNewProduct"
-    class="ms-2"
-  >
-    Add New Product
-  </button>
-  <button
-    *ngIf="isAdmin()"
-    mat-raised-button
-    color="primary"
-    routerLink="/showProductDetails"
-    class="ms-2"
-  >
-    Show Product Details
-  </button>
-  <button
-  *ngIf="isAdmin()"
-  mat-raised-button
-  color="warn"
-  routerLink="/orderInformation"
-  class="ms-2"
->
-  Orders
-</button>
-</mat-toolbar>
+<nav>
+  <div class="logo" routerLink="/">
+    <img src="assets/logo.png" alt="" width="50px" class="me-2" />
+    <h1>
+      <span>OnlineShop</span>
+    </h1>
+  </div>
+  <div>
+    <ul>
+      <li><a routerLink="/"> Home </a></li>
+      <li><a href="#"> About </a></li>
+      <li><a href="#"> Contact Us </a></li>
+    </ul>
+  </div>
+  <div class="buttons" *ngIf="isLoggedIn()">
+    <button *ngIf="isUser()" routerLink="/myOrders" class="me-4">
+      <mat-icon class="me-1">person</mat-icon>
+      Account
+    </button>
+    <button *ngIf="isUser()" routerLink="/cart" class="me-4">
+      <mat-icon class="me-1">shopping_cart</mat-icon>
+      Cart
+    </button>
+    <button (click)="logout()">
+      <mat-icon class="me-1">logout</mat-icon>
+      Logout
+    </button>
+  </div>
+  <div class="buttons" *ngIf="!isLoggedIn()">
+    <button routerLink="/login">
+      <mat-icon class="me-1">input</mat-icon>
+      Login
+    </button>
+  </div>
+</nav>

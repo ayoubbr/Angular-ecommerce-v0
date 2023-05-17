@@ -1,4 +1,5 @@
-<mat-grid-list cols="4" rowHeight="1:1">
+<mat-grid-list cols="4" rowHeight="1:1" [gutterSize]="'10px'">
+  <h2 class="mb-4">All Images :</h2>
   <mat-grid-tile *ngFor="let fileHandle of data.images">
     <img [src]="fileHandle.url" height="100%" />
   </mat-grid-tile>

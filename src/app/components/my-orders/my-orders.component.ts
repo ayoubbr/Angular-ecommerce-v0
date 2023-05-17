@@ -9,16 +9,9 @@ import { MyOrderDetails } from "../../model/order.model";
 })
 export class MyOrdersComponent implements OnInit {
   constructor(private productService: ProductService) {}
-  displayedColumns: string[] = [
-    "index",
-    "name",
-    "address",
-    "contact No.",
-    "amount",
-    "status"
-  ];
-  // myOrderDetails: MyOrderDetails[] = [];
+
   myOrderDetails: MyOrderDetails[] = [];
+
   ngOnInit(): void {
     this.getOrderDetails();
   }
@@ -26,12 +19,9 @@ export class MyOrdersComponent implements OnInit {
   getOrderDetails() {
     this.productService.getOrderDetails().subscribe(
       (resp: MyOrderDetails[]) => {
-        console.log(resp);
         this.myOrderDetails = resp;
       },
-      (err) => {
-        console.log(err);
-      }
+      (err) => {}
     );
   }
 }

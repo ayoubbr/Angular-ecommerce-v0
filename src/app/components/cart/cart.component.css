@@ -4,3 +4,32 @@ table td {
 .mat-column-Description {
   width: 35% !important;
 }
+.container {
+  font-family: Quicksand;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.cart-card {
+  padding: 20px 30px;
+  width: 1000px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.head-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.mybtn-2 {
+  color: white;
+  background-color: var(--red-color);
+}
+.mybtn-2:hover {
+  background-color: white;
+  color: var(--main-color);
+}

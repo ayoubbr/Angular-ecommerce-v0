@@ -1,40 +1,64 @@
-<div class="container mt-5">
-  <table mat-table [dataSource]="myOrderDetails" class="mat-elevation-z8 w-100">
-    <ng-container matColumnDef="index">
-      <th mat-header-cell *matHeaderCellDef>Index</th>
-      <td mat-cell *matCellDef="let element; let i = index">{{ i }}</td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.orderFullName }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef>Address</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.orderFullOrder }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="contact No.">
-      <th mat-header-cell *matHeaderCellDef>Contact No.</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.orderContactNumber }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef>Amount</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.orderAmount }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef>Status</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.orderStatus }}
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+<div class="container py-5 mx-auto">
+  <div class="row mb-4">
+    <h2 class="fw-bold">Your Orders</h2>
+  </div>
+  <div class="row card-container">
+    <div class="card" *ngFor="let element of myOrderDetails">
+      <div class="order-row">
+        <div class="order-header">
+          <h5>
+            ORDER <span class="text-primary font-weight-bold">#Y34XDHR</span>
+          </h5>
+          <div class="d-flex flex-column text-sm-right">
+            <p class="mb-0">Expected Arrival <span>01/12/19</span></p>
+            <p>
+              USPS <span class="font-weight-bold">234094567242423422898</span>
+            </p>
+          </div>
+        </div>
+        <div class="order-info">
+          <p><b> Full Name :</b> {{ element.orderFullName }}</p>
+          <p><b>Address :</b> {{ element.orderFullOrder }}</p>
+          <p><b>Amount :</b> {{ element.orderAmount }}</p>
+        </div>
+      </div>
+      <!-- Add class 'active' to progress -->
+      <div class="row d-flex justify-content-center">
+        <div class="col-12">
+          <ul id="progressbar" class="text-center">
+            <li class="active step0"></li>
+            <li class="active step0"></li>
+            <li class="active step0"></li>
+            <li class="step0"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="images-row top">
+        <div class="icon-content">
+          <img class="icon" src="assets/note.png" />
+          <div class="flex-column">
+            <p class="text-muted">Order<br />Processed</p>
+          </div>
+        </div>
+        <div class="icon-content">
+          <img class="icon" src="assets/package-delivered.png" />
+          <div class="flex-column">
+            <p class="text-muted">Order<br />Shipped</p>
+          </div>
+        </div>
+        <div class="icon-content">
+          <img class="icon" src="assets/delivery-truck.png" />
+          <div class="flex-column">
+            <p class="text-muted">Order<br />En Route</p>
+          </div>
+        </div>
+        <div class="icon-content">
+          <img class="icon" src="assets/door-delivery.png" />
+          <div class="d-flex flex-column">
+            <p class="text-muted">Order<br />Arrived</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

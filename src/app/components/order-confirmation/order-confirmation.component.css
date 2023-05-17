@@ -1,0 +1,35 @@
+.container {
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order-card {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 25px 45px;
+  width: 800px;
+  min-width: 450px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h2 {
+  font-size: 40px;
+}
+.orders-list-btn {
+  margin-top: 32px;
+  background-color: black;
+  color: #f2cc8f;
+  border: 1.6px solid black;
+  font-size: 20px;
+  padding: 10px 33px;
+  transition: 0.9s;
+  font-weight: normal;
+  display: flex;
+  gap: 14px;
+}
+.orders-list-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}

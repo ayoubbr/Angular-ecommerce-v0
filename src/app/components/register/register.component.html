@@ -1,56 +1,68 @@
-<div class="container mt-5 w-50 py-5">
-  <div class="card p-5">
-    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Username</mat-label>
-        <input
-          matInput
-          ngModel
-          name="userName"
-          id="userName"
-          placeholder="Username"
-        />
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>First Name</mat-label>
-        <input
-          matInput
-          ngModel
-          name="userFirstName"
-          id="userFirstName"
-          placeholder="First Name"
-        />
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Last Name</mat-label>
-        <input
-          matInput
-          ngModel
-          name="userLastName"
-          id="userLastName"
-          placeholder="Last Name"
-        />
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Password</mat-label>
-        <input
-          matInput
-          ngModel
-          name="userPassword"
-          id="userPassword"
-          placeholder="Password"
-          type="password"
-        />
-      </mat-form-field>
-      <button type="submit" mat-raised-button color="primary" class="w-100">
-        Register
-      </button>
-    </form>
+<div class="register-page">
+  <div class="register-card">
+    <div class="form">
+      <div class="form-head">
+        <img src="assets/shopping-bag.png" height="35px" alt="" />
+        <span>OnlineShop</span>
+      </div>
+      <div class="form-cont">
+        <span>Welcome Here!</span>
+        <span>Where you'll find anything you want!</span>
+      </div>
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+        <div class="w-100 mb-2">
+          <label class="mylabel mb-1">Username</label>
+          <input
+            ngModel
+            name="userName"
+            id="userName"
+            placeholder="Username"
+            class="myinput"
+          />
+        </div>
+        <div class="w-100 mb-2">
+          <label class="mylabel mb-1">First Name</label>
+          <input
+            ngModel
+            name="userFirstName"
+            id="userFirstName"
+            placeholder="First Name"
+            class="myinput"
+          />
+        </div>
+        <div class="w-100 mb-2">
+          <label class="mylabel mb-1">Last Name</label>
+          <input
+            ngModel
+            name="userLastName"
+            id="userLastName"
+            placeholder="Last Name"
+            class="myinput"
+          />
+        </div>
+        <div class="w-100 mb-4">
+          <label class="mylabel mb-1">Password</label>
+          <input
+            ngModel
+            name="userPassword"
+            id="userPassword"
+            placeholder="Password"
+            type="password"
+            class="myinput"
+          />
+        </div>
+        <button type="submit" class="mybtn-1 w-100 mt-3">Register</button>
+        <div class="text-center">
+          <br />
+          Already Have an Account ?
+          <button class="create-btn" type="button" routerLink="/login">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+    <div>
+      <img src="assets/welcome.jpg" width="450px" alt="" />
+    </div>
   </div>
-  <!-- 
-    <div class="text-center">
-     <br>
-     <button mat-raised-button type="button" (click)="registerUser()">Create an account</button>
-    </div> 
-  -->
 </div>

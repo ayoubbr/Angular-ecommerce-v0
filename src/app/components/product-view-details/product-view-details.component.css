@@ -1,13 +1,25 @@
-.product-information {
-  font-size: medium;
-  text-transform: capitalize;
+.container {
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.product-card {
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  width: 90%;
+}
+.col-6 {
+  padding: 10px 20px;
+}
 .image-container {
-  height: 500px;
   position: relative;
+  width: 100%;
 }
-
+.image-col {
+  display: flex;
+  flex-direction: row;
+}
 .product-zoom-image {
   position: absolute;
   max-width: 90%;
@@ -17,5 +29,101 @@
   right: 0;
   left: 0;
   margin: auto;
-  border-radius: 10%;
+  border-radius: 5%;
+}
+.images-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+p {
+  margin: 0;
+}
+.images-row img {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  width: 75px;
+  height: 100%;
+}
+.images-row img:hover {
+  border: 2px solid var(--main-color);
+  cursor: pointer;
+}
+.product-information {
+  font-size: medium;
+  text-transform: capitalize;
+  gap: 26px;
+  display: flex;
+  flex-direction: column;
+}
+.pro-title {
+  display: flex;
+  justify-content: space-between;
+}
+.pro-title mat-icon {
+  font-size: 33px;
+  width: 33px;
+  height: 33px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: 0.5s;
+}
+.pro-title mat-icon:hover {
+  background-color: #eee;
+}
+.rating-container {
+  display: flex;
+  gap: 10px;
+}
+.colors {
+  flex-direction: column;
+}
+.colors .color {
+  display: flex;
+  gap: 20px;
+}
+.colors .color .span-mother {
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.colors .color .span-mother span {
+  width: 25px;
+  height: 25px;
+  background-color: burlywood;
+  border-radius: 50%;
+}
+.colors .color .span-mother:first-child span {
+  background-color: brown;
+}
+.colors .color .span-mother:nth-child(2) span {
+  background-color: darkslategray;
+}
+.colors .color .span-mother:nth-child(3) span {
+  background-color: darkblue;
+}
+.colors .color .span-mother.active {
+  border: 2px solid black;
+}
+
+.buttons-div {
+  display: flex;
+  gap: 12px;
+}
+.mybtn-1,
+.mybtn-1-alt {
+  padding: 8px 15px;
+  font-size: 15px;
+  width: 200px;
+}
+.stars {
+  color: var(--fourth-color);
 }

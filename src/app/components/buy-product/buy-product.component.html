@@ -1,7 +1,58 @@
-<div class="container mt-5">
-  <div class="card p-3">
+<div class="container py-5">
+  <div class="buy-card">
     <div class="row">
       <div class="col-6">
+        <div
+          class="row product-info"
+          *ngFor="let product of productDetails; let i = index"
+        >
+          <div class="row">
+            <div class="col-6 d-flex gap-1">
+              <mat-icon>shopping_bag</mat-icon>
+              <b style="font-size: 18px"> Shopping Product {{ i + 1 }}</b>
+            </div>
+            <div class="col-6 d-flex justify-content-end"></div>
+          </div>
+          <div class="row" style="background: #eee; padding: 30px 20px">
+            <div class="row images-row"></div>
+            <div class="col-6">
+              <img
+                [src]="product.productImages[0].url"
+                alt=""
+                height="180px"
+                style="border: 2px solid rgba(0, 0, 0, 0.3); padding: 10px"
+              />
+            </div>
+            <div class="col-6 product-det">
+              <p>{{ product.productName }}</p>
+              <p>{{ product.productDiscountedPrice | currency }}</p>
+              <div class="wrapper mb-3">
+                <span class="minus" (click)="decrease(product.productId)"
+                  >-</span
+                >
+                <span class="num">{{
+                  getQuantityForProduct(product.productId)
+                }}</span>
+                <span class="plus" (click)="increase(product.productId)"
+                  >+</span
+                >
+              </div>
+              <div class="row">
+                <div class="col-12" style="font-size: 22px">
+                  <b> Total :</b>
+                  {{
+                    getCalculatedTotal(
+                      product.productId,
+                      product.productDiscountedPrice
+                    ) | currency
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6" style="padding: 20px 50px">
         <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Full Name</mat-label>
@@ -39,61 +90,19 @@
               name="alternateContactNumber"
             />
           </mat-form-field>
-          <div align="right">
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <h4>
+              <b>Grand Total : {{ getCalculatedGrandTotal() | currency }}</b>
+            </h4>
             <button
               type="submit"
               [disabled]="!orderForm.form.valid"
-              mat-stroked-button
-              color="primary"
+              class="order-btn"
             >
-              Place Order
+              Place Order <mat-icon>arrow_right_alt</mat-icon>
             </button>
           </div>
         </form>
-      </div>
-      <div class="col-6">
-        <table class="table">
-          <thead class="thead">
-            <tr>
-              <th>Name</th>
-              <th>Amount</th>
-              <th>Quantity</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody class="tbody">
-            <tr *ngFor="let product of productDetails">
-              <td>{{ product.productName }}</td>
-              <td>{{ product.productDiscountedPrice }}</td>
-              <td>
-                <select
-                  #quantity
-                  class="form-select"
-                  [ngModel]="getQuantityForProduct(product.productId)"
-                  (change)="
-                    onQuantityChanged(quantity.value, product.productId)
-                  "
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </td>
-              <td>
-                {{
-                  getCalculatedTotal(
-                    product.productId,
-                    product.productDiscountedPrice
-                  )
-                }}
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3"><b> Total</b></td>
-              <td><b>{{getCalculatedGrandTotal()}}</b></td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>

@@ -1,0 +1,134 @@
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+.dashboard {
+  font-family: Quicksand, "Open Sans", sans-serif;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+}
+.sidebar {
+  height: 100vh;
+  width: 280px;
+  box-shadow: 0 0 2px #ddd;
+  transition: 0.4s;
+  position: fixed;
+  padding: 20px 30px;
+}
+.sidebar .logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 20px;
+}
+.sidebar h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+.sidebar a {
+  cursor: pointer;
+}
+.sidebar ul li a {
+  transition: 0.3s;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 14px;
+  color: var(--grey-color);
+  font-weight: 600;
+}
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: #b5d5de;
+  color: black;
+}
+.sidebar ul li a span {
+  margin-left: 10px;
+}
+.sidebar-bars {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 80vh;
+}
+@media (max-width: 767px) {
+  .dashboard {
+    grid-template-columns: 58px 1fr;
+  }
+  .sidebar {
+    width: 58px;
+    padding: 10px;
+  }
+  .sidebar .logo {
+    flex-direction: column;
+  }
+  .sidebar .logo img {
+    width: 35px;
+  }
+  .sidebar h3 {
+    display: none;
+  }
+  .sidebar ul li a span {
+    display: none;
+  }
+}
+/* ========================= Content ========================= */
+.dash-content {
+  min-height: 100vh;
+  grid-column: 2/3;
+  background-color: #f5f4f7;
+  padding: 40px;
+}
+.head {
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+.head .search::before {
+  font-family: var(--fa-style-family-classic);
+  content: "\f002";
+  font-weight: 900;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--grey-color);
+}
+.head .search input {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-left: 5px;
+  padding-left: 30px;
+  width: 260px;
+  transition: width 0.3s;
+}
+.head .search input:focus {
+  width: 300px;
+}
+.head .search input:focus::placeholder {
+  opacity: 0;
+}
+.head .icons .notification {
+  font-size: 20px;
+}
+.head .icons .notification::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--red-color);
+  border-radius: 50%;
+  right: -5px;
+  top: -5px;
+}
+.head .icons img {
+  width: 36px;
+  margin-left: 15px;
+}

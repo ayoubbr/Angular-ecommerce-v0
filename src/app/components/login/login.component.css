@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap");
+
+.login-page {
+  background-color: #efefef;
+  font-family: "Titillium Web", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 44px;
+}
+.login-card {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-head {
+  padding: 35px;
+  font-size: 23px;
+  font-weight: bold;
+  display: flex;
+}
+.form-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.form-cont span:first-child {
+  font-weight: bold;
+  font-size: 36px;
+}
+.login-card .form {
+  width: 450px;
+  height: 600.08px;
+}
+form {
+  padding: 20px 80px;
+}
+p {
+  margin: 0 !important;
+}
+.create-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-weight: bold;
+}

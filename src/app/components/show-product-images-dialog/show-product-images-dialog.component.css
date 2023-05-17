@@ -1,3 +1,8 @@
-mat-grid-tile{
+mat-grid-list {
+  font-family: "Quicksand";
+  padding: 10px;
+}
+mat-grid-tile {
   border: 1px solid #eee;
+  border-radius: 5px;
 }

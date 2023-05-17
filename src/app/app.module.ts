@@ -3,9 +3,8 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { HomeComponent } from "./home/home.component";
+import { HomeComponent } from "./components/home/home.component";
 import { AdminComponent } from "./admin/admin.component";
-import { UserComponent } from "./components/user/user.component";
 import { LoginComponent } from "./components/login/login.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { ForbiddenComponent } from "./components/forbidden/forbidden.component";
@@ -37,13 +36,17 @@ import { CartComponent } from "./components/cart/cart.component";
 import { MyOrdersComponent } from "./components/my-orders/my-orders.component";
 import { OrderDetailsComponent } from "./admin/order-details/order-details.component";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
-
+import { MatMenuModule } from "@angular/material/menu";
+import { MatTabsModule } from "@angular/material/tabs";
+import { DashboardComponent } from "./admin/dashboard/dashboard.component";
+import { FooterComponent } from "./components/footer/footer.component";
+import { NormalUserComponent } from "./normal-user/normal-user.component";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AdminComponent,
-    UserComponent,
     LoginComponent,
     HeaderComponent,
     ForbiddenComponent,
@@ -57,7 +60,11 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
     RegisterComponent,
     CartComponent,
     MyOrdersComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    DashboardComponent,
+    FooterComponent,
+    NormalUserComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,9 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
     MatIconModule,
     MatDialogModule,
     CommonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatMenuModule,
+    MatTabsModule
   ],
   providers: [
     AuthGuard,

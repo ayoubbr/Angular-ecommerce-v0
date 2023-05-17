@@ -11,6 +11,7 @@ import { ProductService } from "../../services/product.service";
 export class ProductViewDetailsComponent implements OnInit {
   product: Product;
   selectedProductIndex = 0;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -19,8 +20,6 @@ export class ProductViewDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = this.activatedRoute.snapshot.data["product"];
-
-    console.log(this.product);
   }
 
   changeIndex(index) {
@@ -39,12 +38,8 @@ export class ProductViewDetailsComponent implements OnInit {
 
   addToCart(productId) {
     this.productService.addToCart(productId).subscribe(
-      (resp) => {
-        console.log(resp);
-      },
-      (err) => {
-        console.log(err);
-      }
+      (resp) => {},
+      (err) => {}
     );
   }
 }

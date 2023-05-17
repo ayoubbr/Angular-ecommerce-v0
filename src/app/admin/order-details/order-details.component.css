@@ -1,0 +1,79 @@
+.status {
+  background-color: var(--main-color);
+  border-radius: 5px;
+  padding: 6px 12px;
+  color: white;
+  font-weight: 500;
+}
+.placed {
+  background: var(--orange-color);
+}
+.delivered {
+  background: var(--green-color);
+}
+table {
+  width: 100%;
+}
+.delivered-btn {
+  background-color: var(--main-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 15px;
+  font-size: 15px;
+  opacity: 1;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+}
+.delivered-btn:hover {
+  background-color: var(--green-color);
+}
+
+/* Start orders Table */
+.orders .responsive-table {
+  overflow-x: auto;
+}
+.orders table {
+  min-width: 1000px;
+  border-spacing: 0;
+}
+
+.orders .orders-head {
+  display: flex;
+  justify-content: space-between;
+}
+.orders thead td {
+  background-color: #eee;
+  font-weight: bold;
+}
+.orders table td {
+  padding: 15px;
+  min-width: 120px;
+}
+.orders tbody td {
+  border-bottom: 1px solid #eee;
+  border-left: 1px solid #eee;
+  transition: 0.3s;
+}
+.orders table tbody tr td:last-child {
+  border-right: 1px solid #eee;
+}
+.orders tbody tr:hover td {
+  background-color: #faf7f7;
+}
+.orders table img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 2px;
+  background-color: white;
+}
+.orders table img:not(:first-child) {
+  margin-left: -20px;
+}
+.orders table .label {
+  font-size: 13px;
+}
+/* End orders Table */

@@ -13,6 +13,7 @@ import { ProductService } from "../../services/product.service";
 export class BuyProductComponent implements OnInit {
   productDetails: Product[] = [];
   isSingleProductCheckout: string = "";
+  quantity = 1;
 
   orderDetails: OrderDetails = {
     fullName: "",
@@ -47,12 +48,12 @@ export class BuyProductComponent implements OnInit {
       .placeOrder(this.orderDetails, this.isSingleProductCheckout)
       .subscribe(
         (resp) => {
-          //  confirming order
-          this.router.navigate(["/orderConfirm"]);
+          this.router.navigate([
+            "/orderConfirm",
+            { details: this.orderDetails }
+          ]);
         },
-        (error) => {
-          console.log(error);
-        }
+        (error) => {}
       );
   }
 
@@ -61,6 +62,18 @@ export class BuyProductComponent implements OnInit {
       (productQunatity) => productQunatity.productId === productId
     );
     return filteredProduct[0].quantity;
+  }
+
+  increase(productId: string) {
+    const quantity = this.getQuantityForProduct(productId);
+    this.onQuantityChanged(quantity + 1, productId);
+  }
+
+  decrease(productId: string) {
+    const quantity = this.getQuantityForProduct(productId);
+    if (quantity > 1) {
+      this.onQuantityChanged(quantity - 1, productId);
+    }
   }
 
   getCalculatedTotal(productId, productDiscountedPrice) {

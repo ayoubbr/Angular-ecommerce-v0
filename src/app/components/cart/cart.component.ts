@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../../services/product.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-cart",
@@ -8,14 +8,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./cart.component.css"]
 })
 export class CartComponent implements OnInit {
-  displayedColumns: string[] = [
-    "Name",
-    "Description",
-    "Price",
-    "Discounted Price",
-    "Action"
-  ];
   cartDetails: any[] = [];
+  productDetails = [];
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
@@ -27,9 +21,7 @@ export class CartComponent implements OnInit {
       (resp: any[]) => {
         this.cartDetails = resp;
       },
-      (err) => {
-        console.log(err);
-      }
+      (err) => {}
     );
   }
 
@@ -38,14 +30,6 @@ export class CartComponent implements OnInit {
       "buyProduct",
       { isSingleProductCheckout: false, id: 0 }
     ]);
-    // this.productService.getProductDetails(false, 0).subscribe(
-    //   (resp) => {
-    //     console.log(resp);
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
   }
 
   delete(cartId) {
@@ -54,9 +38,7 @@ export class CartComponent implements OnInit {
       (resp) => {
         this.getCartDetails();
       },
-      (err) => {
-        console.log(err);
-      }
+      (err) => {}
     );
   }
 }

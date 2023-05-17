@@ -1,56 +1,66 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-6">
-      <div class="card image-container p-3 mb-3">
+<div class="container py-5">
+  <div class="row product-card">
+    <div class="col-6 image-col">
+      <div class="row images-row">
+        <div
+          class="col-3 choose-img"
+          *ngFor="let file of product.productImages; let i = index"
+          (click)="changeIndex(i)"
+        >
+          <img [src]="file.url" alt="" height="70px" />
+        </div>
+      </div>
+      <div class="image-container p-3 mb-3">
         <img
           [src]="product.productImages[selectedProductIndex].url"
           class="product-zoom-image"
         />
       </div>
-      <mat-grid-list cols="4" gutterSize="10" rowHeight="3:4">
-        <mat-grid-tile
-          *ngFor="let file of product.productImages; let i = index"
-          style="border: 1px solid lightgray; cursor: pointer"
-          (click)="changeIndex(i)"
-        >
-          <img [src]="file.url" alt="" height="200px" />
-        </mat-grid-tile>
-      </mat-grid-list>
     </div>
     <div class="col-6">
       <div class="product-information">
-        <div class="mt-3">
+        <div class="pro-title">
           <h2>
             {{ product.productName }}
           </h2>
+          <mat-icon routerLink="/">close</mat-icon>
         </div>
-        <div class="mt-3">
-          Description: <br />
-          {{ product.productDescription }}
+        <div style="font-size: 26px">
+          <b>{{ product.productDiscountedPrice | currency }}</b>
+          &nbsp;
+          <span style="text-decoration: line-through">{{
+            product.productActualPrice | currency
+          }}</span>
+        </div>
+        <div class="rating-container">
+          <p class="stars">
+            <mat-icon>grade</mat-icon>
+            <mat-icon>grade</mat-icon>
+            <mat-icon>grade</mat-icon>
+            <mat-icon>grade</mat-icon>
+            <mat-icon>star_half</mat-icon>
+          </p>
+          <p>4.5 | 121 Reviews</p>
+        </div>
+        <div class="colors d-flex gap-3">
+          <div class="head"><b> Color</b>: Dark Green</div>
+          <div class="color">
+            <span class="span-mother active"><span></span></span>
+            <span class="span-mother"><span></span></span>
+            <span class="span-mother"><span></span></span>
+          </div>
         </div>
         <div>
-          <b>${{ product.productDiscountedPrice }}</b>
-          &nbsp; &nbsp;
-          <span style="text-decoration: line-through"
-            >${{ product.productActualPrice }}</span
-          >
+          <b>Description: </b>
+          {{ product.productDescription }}
         </div>
-        <div class="mt-5 text-center">
-          <button
-            mat-raised-button
-            color="warn"
-            style="width: 200px"
-            (click)="buyProduct(product.productId)"
-          >
-            Buy Now
+        <div class="mt-3 buttons-div">
+          <button class="mybtn-1" (click)="addToCart(product.productId)">
+            Add to Cart <mat-icon>add_shopping_cart</mat-icon>
           </button>
           &nbsp;
-          <button
-            mat-raised-button
-            style="width: 200px"
-            (click)="addToCart(product.productId)"
-          >
-            Add to Cart
+          <button class="mybtn-1-alt" (click)="buyProduct(product.productId)">
+            Buy Now
           </button>
         </div>
       </div>

@@ -15,16 +15,6 @@ import { Router } from "@angular/router";
 })
 export class ShowProductDetailsComponent implements OnInit {
   productDetails: Product[] = [];
-  displayedColumns: string[] = [
-    "Id",
-    "Product Name",
-    "description",
-    "Product Discounted Price",
-    "Product Actual Price",
-    "Images",
-    "Edit",
-    "Delete"
-  ];
   pageNumber: number = 0;
   showTable = false;
   showLoadButton = false;
@@ -69,26 +59,20 @@ export class ShowProductDetailsComponent implements OnInit {
             this.showLoadButton = false;
           }
         },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-        }
+        (error: HttpErrorResponse) => {}
       );
   }
 
   deleteProduct(productId) {
-    console.log(productId);
     this.productService.deleteProduct(productId).subscribe(
       (resp) => {
         this.getAllProducts();
       },
-      (error) => {
-        console.log(error);
-      }
+      (error) => {}
     );
   }
 
   showImages(product: Product) {
-    console.log(product);
     this.imagesDialog.open(ShowProductImagesDialogComponent, {
       data: {
         images: product.productImages
@@ -99,8 +83,7 @@ export class ShowProductDetailsComponent implements OnInit {
   }
 
   editProductDetails(productId) {
-    console.log(productId);
-    this.router.navigate(["/addNewProduct", { productId: productId }]);
+    this.router.navigate(["/admin/addNewProduct", { productId: productId }]);
   }
 
   loadMoreProduct() {

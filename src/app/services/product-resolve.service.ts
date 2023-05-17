@@ -18,6 +18,7 @@ export class ProductResolveService implements Resolve<Product> {
     private productService: ProductService,
     private imageProcessingService: ImageProcessingService
   ) {}
+
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

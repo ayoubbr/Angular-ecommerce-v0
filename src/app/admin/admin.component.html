@@ -1,5 +1,92 @@
-<div class="container mt-5">
-    <div class="card text-center" style="color: green; padding: 20px;">
-        <h1>You are Admin</h1>
+<!-- //////////////////////////////////////////////////// -->
+<div class="dashboard">
+  <div class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="assets/logo.png" width="40px" alt="" />
+      <h3>OnlineShop</h3>
     </div>
+    <div class="sidebar-bars">
+      <ul>
+        <div class="text-muted px-3 mt-2">
+          <p>MAIN MENU</p>
+        </div>
+        <li>
+          <a
+            class="d-flex align-center fs-14 p-10"
+            routerLink="dashboard"
+            routerLinkActive="active"
+          >
+            <i class="fa-solid fa-border-all fa-fw"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="d-flex align-center fs-14 p-10"
+            routerLink="addNewProduct"
+            routerLinkActive="active"
+          >
+            <i class="fa-regular fa-square-plus a-fw"></i>
+            <span>Add a Product</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="d-flex align-center fs-14 p-10"
+            routerLink="showProductDetails"
+            routerLinkActive="active"
+          >
+            <i class="fa-solid fa-table-list fa-fw"></i>
+            <span>Products</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="d-flex align-center fs-14 p-10"
+            routerLink="orderInformation"
+            routerLinkActive="active"
+          >
+            <i class="fa-solid fa-cart-arrow-down fa-fw"></i>
+            <span>Orders</span>
+          </a>
+        </li>
+      </ul>
+      <div>
+        <ul>
+          <li>
+            <a
+              class="d-flex align-center fs-14 p-10"
+              routerLink="settings"
+              routerLinkActive="active"
+            >
+              <i class="fa-solid fa-gear fa-fw"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li>
+            <a class="d-flex align-center fs-14 p-10" (click)="logout()">
+              <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="dash-content">
+    <div class="head between-flex">
+      <div class="search p-relative">
+        <input class="p-10" type="search" placeholder="Type A Keyword" />
+      </div>
+      <div class="icons d-flex align-center">
+        <span class="notification p-relative">
+          <i class="fa-regular fa-bell fa-lg"></i>
+        </span>
+        <img src="assets/admin/imgs/avatar.png" alt="" />
+      </div>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

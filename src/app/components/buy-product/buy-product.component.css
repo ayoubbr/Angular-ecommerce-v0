@@ -1,0 +1,76 @@
+.container {
+  font-family: "Quicksand", sans-serif;
+}
+.buy-card {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 15px 12px;
+}
+.product-info {
+  padding: 10px 40px;
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+.product-info:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.product-det {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.product-det p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.product-det p:not(:first-child) {
+  margin-bottom: 40px;
+}
+.wrapper {
+  height: 55px;
+  min-width: 150px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  position: relative;
+}
+.wrapper::before {
+  content: "Quantity:";
+  top: -24px;
+  position: absolute;
+}
+.wrapper span {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+}
+.wrapper span.num {
+  font-size: 22px;
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+}
+.wrapper span.minus,
+.wrapper span.plus {
+  cursor: pointer;
+}
+.order-btn {
+  background-color: white;
+  color: black;
+  border: 1.6px solid black;
+  border-radius: 0px;
+  font-size: 16px;
+  padding: 10px 33px;
+  transition: 0.9s;
+  font-weight: bold;
+  display: flex;
+  gap: 14px;
+}
+.order-btn:hover {
+  background-color: black;
+  color: white;
+}

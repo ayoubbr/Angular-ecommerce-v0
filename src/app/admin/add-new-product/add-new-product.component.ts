@@ -5,7 +5,7 @@ import { NgForm } from "@angular/forms";
 import { ProductService } from "../../services/product.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { DomSanitizer } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-add-new-product",
@@ -17,17 +17,17 @@ export class AddNewProductComponent implements OnInit {
     productId: null,
     productName: "",
     productDescription: "",
-    productDiscountedPrice: 0,
-    productActualPrice: 0,
+    productDiscountedPrice: null,
+    productActualPrice: null,
     productImages: []
   };
-
   isNewProduct = true;
 
   constructor(
     private productService: ProductService,
     private sanitizer: DomSanitizer,
-    private activaedRoute: ActivatedRoute
+    private activaedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +42,10 @@ export class AddNewProductComponent implements OnInit {
     this.productService.addProduct(productFormData).subscribe(
       (response: Product) => {
         productForm.reset();
-        // this.product.productImages = [];
+        if (!this.isNewProduct) {
+          this.router.navigate(["/admin/showProductDetails"]);
+        }
+        this.product.productImages = [];
       },
       (error: HttpErrorResponse) => {
         console.error(error);
@@ -90,5 +93,9 @@ export class AddNewProductComponent implements OnInit {
 
   fileDropped(fileHandle: FileHandle) {
     this.product.productImages.push(fileHandle);
+  }
+
+  clear(productForm: NgForm) {
+    productForm.reset();
   }
 }
