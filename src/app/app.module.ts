@@ -42,6 +42,8 @@ import { DashboardComponent } from "./admin/dashboard/dashboard.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { NormalUserComponent } from "./normal-user/normal-user.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +86,8 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
     CommonModule,
     MatButtonToggleModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [
     AuthGuard,

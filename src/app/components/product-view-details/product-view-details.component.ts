@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../../model/product.model";
 import { ProductService } from "../../services/product.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-product-view-details",
@@ -38,8 +39,26 @@ export class ProductViewDetailsComponent implements OnInit {
 
   addToCart(productId) {
     this.productService.addToCart(productId).subscribe(
-      (resp) => {},
-      (err) => {}
+      (resp) => {
+        if (resp == null) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Product already in your cart!"
+          });
+        } else {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product added successfuly to you cart!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
     );
   }
 }
