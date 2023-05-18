@@ -23,6 +23,7 @@ export class AddNewProductComponent implements OnInit {
     productImages: []
   };
   isNewProduct = true;
+  fileInputError = true;
 
   constructor(
     private productService: ProductService,
@@ -36,42 +37,51 @@ export class AddNewProductComponent implements OnInit {
     if (this.product && this.product.productId) {
       this.isNewProduct = false;
     }
+    if (!this.isNewProduct) {
+      this.fileInputError = false;
+    }
   }
 
   addProduct(productForm: NgForm) {
-    const productFormData = this.prepareFormData(this.product);
-    this.productService.addProduct(productFormData).subscribe(
-      (response: Product) => {
-        if (!this.isNewProduct) {
-          this.router.navigate(["/admin/showProductDetails"]);
+    if (productForm.valid) {
+      const productFormData = this.prepareFormData(this.product);
+      this.productService.addProduct(productFormData).subscribe(
+        (response: Product) => {
+          if (!this.isNewProduct) {
+            this.router.navigate(["/admin/showProductDetails"]);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Product updated successfuly!",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          } else {
+            productForm.reset();
+            this.clearFormErrors(productForm);
+            this.product.productImages = [];
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Product added successfuly!",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        },
+        (error: HttpErrorResponse) => {
+          console.error(error);
           Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Product updated successfuly!",
-            showConfirmButton: false,
-            timer: 1500
-          });
-        } else {
-          productForm.reset();
-          this.product.productImages = [];
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Product added successfuly!",
-            showConfirmButton: false,
-            timer: 1500
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong! Form is Invalid"
           });
         }
-      },
-      (error: HttpErrorResponse) => {
-        console.error(error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!"
-        });
-      }
-    );
+      );
+    } else {
+      console.log("Form is invalid");
+      productForm.form.markAllAsTouched();
+    }
   }
 
   prepareFormData(product: Product): FormData {
@@ -94,8 +104,9 @@ export class AddNewProductComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    if (event.target.files) {
+    if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+      this.fileInputError = false;
 
       const fileHandle: FileHandle = {
         file: file,
@@ -105,11 +116,16 @@ export class AddNewProductComponent implements OnInit {
       };
 
       this.product.productImages.push(fileHandle);
+    } else {
+      this.fileInputError = true;
     }
   }
 
   removeImage(i: number) {
     this.product.productImages.splice(i, 1);
+    if (this.product.productImages.length === 0) {
+      this.fileInputError = true;
+    }
   }
 
   fileDropped(fileHandle: FileHandle) {
@@ -118,5 +134,12 @@ export class AddNewProductComponent implements OnInit {
 
   clear(productForm: NgForm) {
     productForm.reset();
+    this.clearFormErrors(productForm);
+  }
+
+  clearFormErrors(productForm: NgForm) {
+    Object.keys(productForm.controls).forEach((key: string) => {
+      productForm.controls[key].setErrors(null);
+    });
   }
 }

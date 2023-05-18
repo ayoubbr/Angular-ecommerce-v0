@@ -56,3 +56,8 @@ a.browse-btn {
 a.browse-btn:hover {
   opacity: 0.8;
 }
+
+.disabled-button {
+  opacity: 0.5; /* Adjust the opacity value to achieve the desired visual effect */
+  cursor: not-allowed;
+}

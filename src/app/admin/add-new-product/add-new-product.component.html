@@ -12,7 +12,14 @@
             placeholder="Product Name"
             [(ngModel)]="product.productName"
             name="productName"
+            id="productName"
+            required
           />
+          <mat-error
+            *ngIf="productForm.controls['productName']?.errors?.required"
+          >
+            Product Name is required
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Product Description</mat-label>
@@ -21,7 +28,15 @@
             placeholder="Product Description"
             [(ngModel)]="product.productDescription"
             name="productDescription"
+            required
           />
+          <mat-error
+            *ngIf="
+              productForm.controls['productDescription']?.hasError('required')
+            "
+          >
+            Product Description is required
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Product Actual Price</mat-label>
@@ -30,7 +45,15 @@
             placeholder="Product Actual Price"
             [(ngModel)]="product.productActualPrice"
             name="productActualPrice"
+            required
           />
+          <mat-error
+            *ngIf="
+              productForm.controls['productActualPrice']?.hasError('required')
+            "
+          >
+            Product Actual Price is required
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Product Discounted Price</mat-label>
@@ -39,7 +62,17 @@
             placeholder="Product Discounted Price"
             [(ngModel)]="product.productDiscountedPrice"
             name="productDiscountedPrice"
+            required
           />
+          <mat-error
+            *ngIf="
+              productForm.controls['productDiscountedPrice']?.hasError(
+                'required'
+              )
+            "
+          >
+            Product Discounted Price is required
+          </mat-error>
         </mat-form-field>
         <div class="d-flex justify-content-end gap-3">
           <button
@@ -49,10 +82,22 @@
           >
             Clear
           </button>
-          <button class="admin-btn1" type="submit" *ngIf="isNewProduct">
+          <button
+            class="admin-btn1"
+            type="submit"
+            *ngIf="isNewProduct"
+            [disabled]="!productForm.valid || fileInputError"
+            [class.disabled-button]="!productForm.valid || fileInputError"
+          >
             Add product
           </button>
-          <button class="admin-btn1" type="submit" *ngIf="!isNewProduct">
+          <button
+            class="admin-btn1"
+            type="submit"
+            *ngIf="!isNewProduct"
+            [disabled]="!productForm.valid || fileInputError"
+            [class.disabled-button]="!productForm.valid || fileInputError"
+          >
             Update product
           </button>
         </div>
@@ -68,6 +113,9 @@
           ></a>
           your file.
         </div>
+      </div>
+      <div *ngIf="fileInputError" class="text-danger">
+        You must select at least 1 file.
       </div>
       <input
         type="file"
