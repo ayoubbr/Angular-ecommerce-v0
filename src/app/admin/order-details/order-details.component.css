@@ -14,21 +14,13 @@
 table {
   width: 100%;
 }
-.delivered-btn {
+.mybtn-2 {
   background-color: var(--main-color);
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px 15px;
-  font-size: 15px;
-  opacity: 1;
-  border-radius: 50%;
-  outline: none;
-  border: none;
+  font-size: 12px;
 }
-.delivered-btn:hover {
-  background-color: var(--green-color);
+.mybtn-2:hover {
+  background-color: var(--fourth-color);
 }
 
 /* Start orders Table */

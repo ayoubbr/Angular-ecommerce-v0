@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../../services/product.service";
 import { FormControl } from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-order-details",
@@ -28,11 +29,24 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   markAsDelivered(orderId) {
-    this.productService.markAsDelivered(orderId).subscribe(
-      (resp) => {
-        this.getAllOrderDetailsForAdmin(this.status);
-      },
-      (err) => {}
-    );
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Submit it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Submitted!", "This product has been made as delivered.", "success");
+        this.productService.markAsDelivered(orderId).subscribe(
+          (resp) => {
+            this.getAllOrderDetailsForAdmin(this.status);
+          },
+          (err) => {}
+        );
+      }
+    });
   }
 }
