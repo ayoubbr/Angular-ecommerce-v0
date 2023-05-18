@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../../services/product.service";
 import { FormControl } from "@angular/forms";
 import Swal from "sweetalert2";
+import { SharedDataService } from "src/app/services/shared-data.service";
 
 @Component({
   selector: "app-order-details",
@@ -13,7 +14,10 @@ export class OrderDetailsComponent implements OnInit {
   status: string = "all";
   fontStyleControl = new FormControl("");
   fontStyle?: string;
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private sharedDataService: SharedDataService
+  ) {}
 
   ngOnInit(): void {
     this.getAllOrderDetailsForAdmin(this.status);
@@ -23,6 +27,14 @@ export class OrderDetailsComponent implements OnInit {
     this.productService.getAllOrderDetails(status).subscribe(
       (resp) => {
         this.dataSource = resp;
+        let moneyCount = 0;
+        let orderCount = 0;
+        this.dataSource.forEach((element) => {
+          moneyCount += element.orderAmount;
+        });
+        orderCount = resp.length;
+        this.sharedDataService.setMoneyCount(moneyCount);
+        this.sharedDataService.setOrderCount(orderCount);
       },
       (err) => {}
     );
@@ -39,7 +51,11 @@ export class OrderDetailsComponent implements OnInit {
       confirmButtonText: "Yes, Submit it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Submitted!", "This product has been made as delivered.", "success");
+        Swal.fire(
+          "Submitted!",
+          "This product has been made as delivered.",
+          "success"
+        );
         this.productService.markAsDelivered(orderId).subscribe(
           (resp) => {
             this.getAllOrderDetailsForAdmin(this.status);

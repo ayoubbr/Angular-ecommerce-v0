@@ -17,9 +17,9 @@ a {
 /* Start Welcome Widget */
 .welcome {
   overflow: hidden;
+  box-shadow: 2px 2px 5px 2px #efefef;
 }
 .welcome .intro img {
-  width: 200px;
   margin-bottom: -10px;
 }
 .welcome .avatar {
@@ -73,6 +73,9 @@ a {
 }
 /* End Quick Draft Widget */
 /* Start Targets */
+.targets{
+  box-shadow: 2px 2px 5px 2px #efefef;
+}
 .targets .target-row .icon {
   width: 80px;
   height: 80px;
