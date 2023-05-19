@@ -17,7 +17,7 @@ a {
 /* Start Welcome Widget */
 .welcome {
   overflow: hidden;
-  box-shadow: 2px 2px 5px 2px #efefef;
+  box-shadow: 2px 2px 5px 2px #eae8e8;
 }
 .welcome .intro img {
   margin-bottom: -10px;
@@ -73,8 +73,8 @@ a {
 }
 /* End Quick Draft Widget */
 /* Start Targets */
-.targets{
-  box-shadow: 2px 2px 5px 2px #efefef;
+.targets {
+  box-shadow: 2px 2px 5px 2px #eae8e8;
 }
 .targets .target-row .icon {
   width: 80px;
@@ -135,6 +135,9 @@ a {
 }
 /* End Targets */
 /* Start Tickets */
+.tickets {
+  box-shadow: 2px 2px 5px 2px #eae8e8;
+}
 .tickets .box {
   border: 1px solid #ccc;
   width: calc(50% - 10px);
@@ -273,6 +276,10 @@ a {
 }
 /* End Latest Post */
 /* Start Social Media */
+
+.social-media {
+  box-shadow: 2px 2px 5px 2px #eae8e8;
+}
 .social-media .box {
   padding-left: 70px;
 }

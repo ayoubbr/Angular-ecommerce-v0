@@ -78,10 +78,13 @@ export class ShowProductDetailsComponent implements OnInit {
         this.productService.deleteProduct(productId).subscribe(
           (resp) => {
             this.getAllProducts();
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
           },
-          (error) => {}
+          (error) => {
+            console.log(error);
+            Swal.fire("Error!", "Product found in some order, so you can't delete it!", "error");
+          }
         );
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
     });
   }
