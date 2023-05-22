@@ -43,6 +43,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { NormalUserComponent } from "./normal-user/normal-user.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
     DashboardComponent,
     FooterComponent,
     NormalUserComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

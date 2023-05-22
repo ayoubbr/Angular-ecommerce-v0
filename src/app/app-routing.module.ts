@@ -19,6 +19,7 @@ import { MyOrdersComponent } from "./components/my-orders/my-orders.component";
 import { OrderDetailsComponent } from "./admin/order-details/order-details.component";
 import { DashboardComponent } from "./admin/dashboard/dashboard.component";
 import { NormalUserComponent } from "./normal-user/normal-user.component";
+import { AboutComponent } from "./components/about/about.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: "", component: HomeComponent },
       { path: "login", component: LoginComponent },
       { path: "forbidden", component: ForbiddenComponent },
+      { path: "about", component: AboutComponent },
       {
         path: "productViewDetails",
         component: ProductViewDetailsComponent,
